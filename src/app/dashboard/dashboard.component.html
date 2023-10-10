@@ -1,0 +1,34 @@
+<mat-drawer-container class="example-container" autosize>
+   <!-- ----- SIDEBAR ------ --> 
+   <mat-drawer #drawer class="example-sidenav" mode="over">
+      <p>Auto-resizing sidenav</p>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+ <!-- ----- SIDEBAR ------ -->
+
+ <!-- ----- CONTENIDO ------ -->
+
+ <!--   Toolbar -->
+
+ <mat-toolbar color="accent">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Aplicación de Entorno Educativo</span>
+  </mat-toolbar>
+
+  <app-forms></app-forms>
+ 
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+    </div>
+
+    
+ <!-- ----- CONTENIDO ------ -->
+  
+  </mat-drawer-container>
