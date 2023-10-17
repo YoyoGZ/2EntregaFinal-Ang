@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
    <!-- ----- SIDEBAR ------ --> 
-   <mat-drawer #drawer class="example-sidenav" mode="over">
+   <mat-drawer #drawer class="example-sidenav" mode="over" position="end">
       <p>Auto-resizing sidenav</p>
       <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
       <button (click)="showFiller = !showFiller" mat-raised-button>
@@ -20,7 +20,7 @@
     <span>Aplicación de Entorno Educativo</span>
   </mat-toolbar>
 
-  <app-forms></app-forms>
+  <app-users></app-users>
  
     <div class="example-sidenav-content">
       <button type="button" mat-button (click)="drawer.toggle()">

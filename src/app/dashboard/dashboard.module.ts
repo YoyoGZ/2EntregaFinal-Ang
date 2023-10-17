@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 import { IconsModule } from './pages/icons/icons.module';
 import { FormsModule as FormsPagesModule } from './pages/forms/forms.module';
+import { SharedModule } from '../shared/shared.module';
+import { UsersModule } from './pages/users/users.module';
 
 @NgModule({
   declarations: [
@@ -15,14 +14,12 @@ import { FormsModule as FormsPagesModule } from './pages/forms/forms.module';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MatSidenavModule,
-    MatCardModule,
-    MatButtonModule,
     IconsModule,
     MatToolbarModule,
-    MatIconModule,
     FormsPagesModule,
-    
+    UsersModule,
   ],
   exports:[
     DashboardComponent
