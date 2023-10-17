@@ -5,12 +5,12 @@
 <div mat-dialog-content>
     <form [formGroup]="userForm">
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <mat-form-field class="w-100">
                     <mat-label> Nombre </mat-label>
                     <input formControlName="name" matInput/>
                     <mat-error>
-                        {{ userForm.get("name")?.errors | formErrors}}                       
+                        {{ userForm.get("name")?.errors | formErrors }}                       
                     </mat-error>
                 </mat-form-field>
             </div>       
@@ -19,7 +19,7 @@
                     <mat-label> Apellido </mat-label>
                     <input formControlName="lastName" matInput/>
                     <mat-error>
-                        {{ userForm.get("lastName")?.errors | formErrors}}                        -->
+                        {{ userForm.get("lastName")?.errors | formErrors }}                        -->
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -28,7 +28,7 @@
                     <mat-label> Email </mat-label>
                     <input formControlName="email" matInput/>
                     <mat-error>
-                        {{ userForm.get("email")?.errors | formErrors}}                       
+                        {{ userForm.get("email")?.errors | formErrors }}                       
                     </mat-error>
                 </mat-form-field>
             </div>

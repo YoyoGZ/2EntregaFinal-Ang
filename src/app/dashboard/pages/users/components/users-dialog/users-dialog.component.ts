@@ -19,7 +19,7 @@ export class UsersDialogComponent {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.email, Validators.required]],
     })
     if (this.user) {
       this.userForm.patchValue(this.user);
