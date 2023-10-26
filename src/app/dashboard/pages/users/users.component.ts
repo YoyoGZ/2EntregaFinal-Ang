@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog'
 import { UsersDialogComponent } from './components/users-dialog/users-dialog.component';
 import { User } from './models';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-users',
@@ -12,30 +13,14 @@ export class UsersComponent {
   userName = '';
 
   users: User[] = [
-    {
-      id: 1,
-    name:'Martin',
-    lastName: 'Solveig',
-    email: 'martin@email.com'
-    },
-    {
-      id: 2,
-      name: 'Bob',
-      lastName: 'Sinclair',
-      email: 'BobSinc@email.com'
-    },
-    {
-      id: 3,
-      name: 'Armin',
-      lastName: 'Van Buren',
-      email: 'arminV@email.com'
-    }
-
   ]
 
   constructor(
-    private matDialog: MatDialog
-  ) {}
+    private matDialog: MatDialog,
+    private userService: UsersService,
+  ) {
+    this.users = this.userService.getUsers();
+  }
 
   openUsersDialog(): void {
     this.matDialog

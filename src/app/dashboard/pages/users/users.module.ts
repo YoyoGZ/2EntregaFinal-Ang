@@ -6,7 +6,6 @@ import { UsersDialogComponent } from './components/users-dialog/users-dialog.com
 import { UsersTableComponent } from './components/users-table/users-table.component';
 
 
-
 @NgModule({
   declarations: [
     UsersComponent,
