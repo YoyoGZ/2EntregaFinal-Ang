@@ -14,10 +14,6 @@ export class FormErrorsPipe implements PipeTransform {
     if ('required'in value ) {
       errorMessages.push('Este campo es requerido')
     }
-
-    if ('email'in value ) {
-      errorMessages.push('Debe ser un email válido')
-    }
     return errorMessages.join('/.');
   }
 

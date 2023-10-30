@@ -11,7 +11,6 @@ import { UsersService } from './users.service';
 })
 export class UsersComponent {
   userName = '';
-
   users: User[] = [
   ]
 

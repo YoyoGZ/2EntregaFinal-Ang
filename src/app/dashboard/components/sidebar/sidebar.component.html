@@ -3,19 +3,22 @@
     <mat-list-item>
        <a matListItemTitle> Navegacion </a>
     </mat-list-item>
-    <mat-list-item [activated]="true">
+    <mat-list-item routerLink="home" [activated]="true">
          <a> Home </a>
      </mat-list-item>
-     <mat-list-item>
+     <mat-list-item routerLink="users">
          <a> Usuarios </a>
      </mat-list-item>
-     <mat-list-item>
+     <mat-list-item routerLink="students">
          <a> Estudiantes </a>
      </mat-list-item>
-     <mat-list-item>
+     <mat-list-item routerLink="courses">
          <a> Cursos </a>
      </mat-list-item>
-     <mat-list-item>
+     <mat-list-item routerLink="teachers">
+        <a> Profesores </a>
+    </mat-list-item>
+     <mat-list-item routerLink="enrrollments" >
          <a> Inscripciones </a>
      </mat-list-item>
   </mat-nav-list>

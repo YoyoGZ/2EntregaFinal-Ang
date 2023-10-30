@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsComponent } from './forms.component';
+import { EnrrollmentsComponent } from './enrrollments.component';
 
 
 
 @NgModule({
   declarations: [
-    FormsComponent
+    EnrrollmentsComponent,
   ],
   imports: [
     CommonModule
-  ],
-  exports: [
-    FormsComponent
   ]
 })
-export class FormsModule { }
+export class EnrrollmentsModule { }

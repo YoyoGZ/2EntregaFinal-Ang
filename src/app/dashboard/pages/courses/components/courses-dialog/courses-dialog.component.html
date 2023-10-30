@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>
+    {{ course ? 'Editando Curso' : 'Crear nuevo Curso'}}
+</h1>
+
+<div mat-dialog-content>
+    <form >
+        <div class="row">
+            <div class="col-20">
+                <mat-form-field class="w-100">
+                    <mat-label> Nombre </mat-label>
+                    <input [formControl]="nameControl" matInput/>
+                    <mat-error>
+                        {{ courseForm.get("name")?.errors | formErrors }}                       
+                    </mat-error>
+                </mat-form-field>
+            </div>       
+            <div class="col-6">
+                <mat-form-field class="w-100">
+                    <mat-label> Fecha de Inicio </mat-label>
+                    <input [formControl]="iniDateControl" matInput/>
+                    <mat-error>
+                        {{ courseForm.get("iniDate")?.errors | formErrors }}                        -->
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="w-100">
+                    <mat-label> Fecha de Finalizacion </mat-label>
+                    <input [formControl]="finalDateControl" matInput/>
+                    <mat-error>
+                        {{ courseForm.get("finalDate")?.errors | formErrors }}                       
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+  <button (click)="onSubmit()" mat-button>Guardar cambios</button>
+  <button mat-button mat-dialog-close >Cancelar</button>
+</div>
