@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CoursesDialogComponent } from '../../../courses/components/courses-dialog/courses-dialog.component';
+import { StudentsService } from '../../students.service';
 
 @Component({
   selector: 'app-students-dialog',
@@ -7,5 +11,42 @@ import { Component } from '@angular/core';
   ]
 })
 export class StudentsDialogComponent {
+  nameControl = new FormControl();
+  lastNameControl = new FormControl();
+  emailControl = new FormControl();
 
+  studentForm = new FormGroup({
+    name: this.nameControl,
+    lastName: this.lastNameControl,
+    email: this.emailControl, 
+  });
+  
+  constructor(
+    private matDialogRef: MatDialogRef<CoursesDialogComponent>,
+    private studentsService: StudentsService,
+
+    @Inject(MAT_DIALOG_DATA) 
+    private studentId?: number
+    ) {if (studentId) {
+      this.studentsService.getStudentById$(studentId).subscribe({
+        next: (s) => {
+          if (s) {
+            this.studentForm.patchValue(s);
+            }
+          }
+        });
+      }
+     };
+
+  public get isEditing(): boolean {
+    return !!this.studentId;
+  };
+
+  onSubmit():  void {
+    if (this.studentForm.invalid) {
+      this.studentForm.markAllAsTouched();
+    } else{
+      this.matDialogRef.close(this.studentForm.value);
+    }
+  }
 }

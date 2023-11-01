@@ -1,1 +1,41 @@
-<p>students-dialog works!</p>
+<h1 mat-dialog-title>
+    {{ isEditing ? "Editando Alumno" : "Agregar nuevo Alumno" }}
+</h1>
+
+<div mat-dialog-content>
+    <form>
+        < class="row">
+            <div class="col-20">
+                <mat-form-field class="w-100">
+                    <mat-label> Nombre </mat-label>
+                        <input [formControl]="nameControl" matInput/>
+                    <mat-error>
+                        {{ studentForm.get("name")?.errors | formErrors }}                       
+                    </mat-error>
+                </mat-form-field>
+            </div>       
+            <div class="col-6">
+                <mat-form-field class="w-100">
+                    <mat-label> Apellido </mat-label>
+                        <input [formControl]="lastNameControl" matInput/>
+                    <mat-error>
+                        {{ studentForm.get("lastName")?.errors | formErrors }}                       
+                    </mat-error>    
+                </mat-form-field>
+            <div class="col-6">
+                <mat-form-field class="w-100">  
+                    <mat-label> Email </mat-label>
+                        <input [formControl]="emailControl" matInput/>
+                    <mat-error>
+                        {{ studentForm.get("email")?.errors | formErrors }}                       
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+  <button (click)="onSubmit()" mat-button>Guardar cambios</button>
+  <button mat-button mat-dialog-close >Cancelar</button>
+</div>

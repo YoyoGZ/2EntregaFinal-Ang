@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-    {{ course ? 'Editando Curso' : 'Crear nuevo Curso'}}
+    {{ isEditing ? "Editando curso" : "Agregar curso" }}
 </h1>
 
 <div mat-dialog-content>
@@ -8,7 +8,7 @@
             <div class="col-20">
                 <mat-form-field class="w-100">
                     <mat-label> Nombre </mat-label>
-                    <input [formControl]="nameControl" matInput/>
+                        <input [formControl]="nameControl" matInput/>
                     <mat-error>
                         {{ courseForm.get("name")?.errors | formErrors }}                       
                     </mat-error>
@@ -17,20 +17,26 @@
             <div class="col-6">
                 <mat-form-field class="w-100">
                     <mat-label> Fecha de Inicio </mat-label>
-                    <input [formControl]="iniDateControl" matInput/>
-                    <mat-error>
-                        {{ courseForm.get("iniDate")?.errors | formErrors }}                        -->
-                    </mat-error>
-                </mat-form-field>
+                        <input [formControl]="iniDateControl" matInput [matDatepicker]= "iniDatePicker">
+                            <mat-datepicker-toggle matIconSuffix [for]="iniDatePicker"></mat-datepicker-toggle> 
+                                <mat-hint> MM/DD/AAAA </mat-hint> 
+                                    <mat-datepicker #iniDatePicker> </mat-datepicker> 
+                </mat-form-field> 
+                <mat-error>
+                    {{ courseForm.get("iniDate")?.errors | formErrors }}                        -->
+                </mat-error>
             </div>
             <div class="col-6">
                 <mat-form-field class="w-100">
                     <mat-label> Fecha de Finalizacion </mat-label>
-                    <input [formControl]="finalDateControl" matInput/>
+                    <input [formControl]="finalDateControl" matInput [matDatepicker]= "finalDatePicker" > 
+                        <mat-hint > MM/DD/AAAA </mat-hint >
+                            <mat-datepicker-toggle matIconSuffix [for]="finalDatePicker"></mat-datepicker-toggle> 
+                        <mat-datepicker #finalDatePicker> </mat-datepicker > 
+                </mat-form-field> 
                     <mat-error>
                         {{ courseForm.get("finalDate")?.errors | formErrors }}                       
                     </mat-error>
-                </mat-form-field>
             </div>
         </div>
     </form>

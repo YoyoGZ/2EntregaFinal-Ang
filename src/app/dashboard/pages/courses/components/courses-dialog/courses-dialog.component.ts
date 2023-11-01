@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Course } from '../../models';
+import { CoursesService } from '../../courses.service';
 
 @Component({
   selector: 'app-courses-dialog',
@@ -20,10 +20,26 @@ export class CoursesDialogComponent {
     finalDate:  this.finalDateControl, 
   });
   
-  constructor(private matDialogRef: MatDialogRef<CoursesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public course?: Course,
-    ) {};
+  constructor(
+    private matDialogRef: MatDialogRef<CoursesDialogComponent>,
+    private coursesService: CoursesService,
 
+    @Inject(MAT_DIALOG_DATA) 
+    private courseId?: number
+    ) {if (courseId) {
+      this.coursesService.getCourseById$(courseId).subscribe({
+        next: (c) => {
+          if (c) {
+            this.courseForm.patchValue(c);
+            }
+          }
+        });
+      }
+     };
+
+  public get isEditing(): boolean {
+    return !!this.courseId;
+  };
 
   onSubmit():  void {
     if (this.courseForm.invalid) {

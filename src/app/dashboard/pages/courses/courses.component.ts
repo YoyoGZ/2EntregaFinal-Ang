@@ -31,11 +31,23 @@ export class CoursesComponent {
           this.courses$ =  this.coursesService.createCourse$({
           id: new Date().getTime(),
           name: v.name,
-          iniDate: new Date,
-          finalDate: new Date,
+          iniDate: v.iniDate,
+          finalDate: v.finalDate,
         })
       }
     }
     });
   }
+
+  OnDeleteCourse(courseId: number): void {
+    this.courses$ = this.coursesService.deleteCourse$(courseId)
+  }
+
+  OnEditCourse(courseId: number): void {
+    this.matDialog.open(CoursesDialogComponent, {
+      data:courseId,
+    });
+  }
+
+
 }

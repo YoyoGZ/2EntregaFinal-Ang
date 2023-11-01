@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { CoursesModule } from './pages/courses/courses.module';
 import { StudentsModule } from './pages/students/students.module';
 import { TeachersModule } from './pages/teachers/teachers.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 
 @NgModule({
@@ -25,12 +26,11 @@ import { TeachersModule } from './pages/teachers/teachers.module';
     SharedModule,
     MatSidenavModule,
     MatToolbarModule,
-    UsersModule,
-    CoursesModule,
     MatListModule,
     RouterModule,
     StudentsModule,
     TeachersModule,
+    DashboardRoutingModule
   ],
   exports:[
     DashboardComponent

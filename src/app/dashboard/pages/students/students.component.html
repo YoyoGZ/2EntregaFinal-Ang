@@ -1,1 +1,12 @@
-<p>students works!</p>
+<h1 appHeadline> Listado de Estudiantes</h1>
+<div class="d-flex mb-3">
+<button (click)="addStudent()" mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>
+    Agregar nuevo Estudiante
+</button>
+</div>
+
+<app-students-table [dataSource]="(students$ | async) || []">
+ (editStudent)="onEditStudent($event)"
+ (deleteStudent)="onDeleteStudent($event)"
+</app-students-table>
