@@ -17,7 +17,9 @@ export class StudentsComponent {
     private studentsService: StudentsService,
     private matDialog: MatDialog,
     ) {
-    this.students$ = this.studentsService.getStudents$();
+    this.students$ = this.studentsService.getStudents$()
+    console.log(studentsService);
+    ;
   }
 
   addStudent() : void {

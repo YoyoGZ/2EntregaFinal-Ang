@@ -19,6 +19,8 @@ export class CoursesComponent {
     private matDialog: MatDialog,
     ) {
     this.courses$ = this.coursesService.getCourses$();
+    console.log(this.coursesService);
+    
   }
 
   addCourse() : void {

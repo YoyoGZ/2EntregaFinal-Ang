@@ -1,9 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HomeComponent } from "./pages/home/home.component";
-import { UsersComponent } from "./pages/users/users.component";
-import { UserDetailComponent } from "./pages/users/components/user-detail/user-detail.component";
-import { CoursesComponent } from "./pages/courses/courses.component";
 import { StudentsComponent } from "./pages/students/students.component";
 import { TeachersComponent } from "./pages/teachers/teachers.component";
 import { EnrrollmentsComponent } from "./pages/enrrollments/enrrollments.component";
