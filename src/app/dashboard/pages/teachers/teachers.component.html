@@ -1,1 +1,12 @@
-<p>teachers works!</p>
+<h1 appHeadline> Lista de Profesores</h1>
+<div class="d-flex mb-3">
+<button (click)="addTeacher()" mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>
+    Agregar Nuevo Profesor
+</button>
+</div>
+
+<app-teachers-table [dataSource]="(teachers$ | async) || []">
+ (editCourse)="onEditCourse($event)"
+ (deleteCourse)="onDeleteCourse($event)"
+</app-teachers-table>

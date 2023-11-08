@@ -16,17 +16,14 @@ export class StudentsComponent {
   constructor(
     private studentsService: StudentsService,
     private matDialog: MatDialog,
-    ) {
-    this.students$ = this.studentsService.getStudents$()
-    console.log(studentsService);
-    ;
-  }
+    ) {this.students$ = this.studentsService.getStudents$()};
+    
 
   addStudent() : void {
     this.matDialog
     .open(StudentsDialogComponent)
     .afterClosed()
-     .subscribe({
+    .subscribe({
     next: (v) =>{
       if (!!v) {
           this.students$ =  this.studentsService.createStudent$({

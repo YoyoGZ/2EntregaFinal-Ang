@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-courses-table',
   templateUrl: './courses-table.component.html',
-  styleUrls: ['./courses-table.component.css']
+  styleUrls: []
 })
 export class CoursesTableComponent {
   @Input()

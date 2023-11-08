@@ -17,11 +17,7 @@ export class CoursesComponent {
   constructor(
     private coursesService: CoursesService,
     private matDialog: MatDialog,
-    ) {
-    this.courses$ = this.coursesService.getCourses$();
-    console.log(this.coursesService);
-    
-  }
+    ) {this.courses$ = this.coursesService.getCourses$()};
 
   addCourse() : void {
     this.matDialog

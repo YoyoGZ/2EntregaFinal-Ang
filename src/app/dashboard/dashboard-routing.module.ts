@@ -3,7 +3,7 @@ import { RouterModule } from "@angular/router";
 import { HomeComponent } from "./pages/home/home.component";
 import { StudentsComponent } from "./pages/students/students.component";
 import { TeachersComponent } from "./pages/teachers/teachers.component";
-import { EnrrollmentsComponent } from "./pages/enrrollments/enrrollments.component";
+import { EnrollmentsComponent } from "./pages/enrollments/enrollments.component";
 import { DashboardComponent } from "./dashboard.component";
 
 @NgModule({
@@ -14,20 +14,22 @@ import { DashboardComponent } from "./dashboard.component";
                     { path: 'home',component: HomeComponent,},
                     
                     { path: 'users', 
-                        loadChildren: () => import ('./pages/users/users.module').then((m) => m.UsersModule),},
+                        loadChildren: () => import ('./pages/users/users.module')
+                        .then((m) => m.UsersModule),},
                     
                     { path: 'courses',
-                        loadChildren: () => import ('./pages/courses/courses.module').then((m) => m.CoursesModule),},
+                        loadChildren: () => import ('./pages/courses/courses.module')
+                        .then((m) => m.CoursesModule),},
                     
-                    { path: 'students',component: StudentsComponent,},
+                    { path: 'students',component: StudentsComponent,
+                        loadChildren: () => import ('./pages/students/students.module')
+                        .then((m) => m.StudentsModule)},
                     
-                    // { path: 'students/detail/:id',component: StudentDetailComponent,},
+                    { path: 'teachers',component: TeachersComponent,
+                        loadChildren: () => import ('./pages/teachers/teachers.module')
+                        .then((m) => m.TeachersModule),},
                     
-                    { path: 'teachers',component: TeachersComponent,},
-                    
-                    // { path: 'teachers/detail/:id',component: TeacherDetailComponent,},
-                    
-                    { path: 'enrrollments',component: EnrrollmentsComponent,},
+                    { path: 'enrollments',component: EnrollmentsComponent,},
                     
                     // { path: 'enrrollments/detail/:id', component: TeacherDetailComponent,},
                     
