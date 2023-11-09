@@ -1,4 +1,25 @@
 {
-  "users": [],
-  "courses": []
+  "users": [
+    {
+      "id": 0,
+      "name": "admin",
+      "lastName": "admin",
+      "email": "fake@email.com",
+      "password": "1234",
+      "token": "nalksncjaun456545648222ujahgjk",
+      "role": "Admin"
+    },
+    {
+      "id": 1,
+      "name": "admin",
+      "lastName": "admin",
+      "email": "fake@email.com",
+      "password": "1234",
+      "token": "nalksncjaun456545648222ujahgjk",
+      "role": "Admin"
+    }
+  ],
+  "courses": [],
+  "students": [],
+  "teachers": []
 }

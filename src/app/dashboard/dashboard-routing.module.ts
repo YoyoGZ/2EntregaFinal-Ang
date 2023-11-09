@@ -31,10 +31,6 @@ import { DashboardComponent } from "./dashboard.component";
                     
                     { path: 'enrollments',component: EnrollmentsComponent,},
                     
-                    // { path: 'enrrollments/detail/:id', component: TeacherDetailComponent,},
-                    
-                    // { path: 'exit-app',component: AuthComponent,},
-            
                     { path: '**',redirectTo: 'home',},
                 ]
             }            
