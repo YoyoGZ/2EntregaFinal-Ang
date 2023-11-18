@@ -17,14 +17,29 @@ describe('loginComponent' ,() => {
     });
 
     it('Should create Login Component', ()=> {
-       
         expect(loginComponent).toBeTruthy();
     });
 
-    it('Should mark all fields as touched if this one is invalid'), () => {
+    it('Should mark all fields as touched if this one is invalid', () => {
+
         loginComponent.login();
 
         expect(loginComponent.emailControl.touched).toBeTrue();
         expect(loginComponent.passwordControl.touched).toBeTrue()
-    }
+    });
+
+    // it('If this form is valid should be call login method', () => {
+    //     loginComponent.loginForm.patchValue({    
+    //          email: 'testing@email.com ,    
+    //          password: '987654'
+    // })
+
+    //     const spyOnAuthServiceLogin = spyOn(
+    //         (loginComponent as any).authService,'login'
+    //     );
+
+    //     loginComponent.login();
+
+    //     expect(spyOnAuthServiceLogin).toHaveBeenCalled();
+    // });
 })

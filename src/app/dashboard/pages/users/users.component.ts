@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { UsersDialogComponent } from './components/users-dialog/users-dialog.component';
 import { User } from './models';
 import { UsersService } from './users.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -11,55 +12,43 @@ import { UsersService } from './users.service';
 })
 export class UsersComponent {
   userName = '';
-  users: User[] = [
-  ]
+  users$: Observable<User[]>
 
   constructor(
     private matDialog: MatDialog,
     private userService: UsersService,
   ) {
-    this.users = this.userService.getUsers();
+    this.users$ = this.userService.getUsers();
   }
 
-  openUsersDialog(): void {
+  addUser(): void {
     this.matDialog
     .open(UsersDialogComponent)
     .afterClosed()
     .subscribe({
       next: (v) =>{
-        console.log('VALOR ',v);
-
         if (!!v) {
-          this.users = [
-          ... this.users,
-          { ...v,
-            id: new Date().getTime(),
-          },
-        ];
-      }
-     },
-    });
+          this.users$ = this.userService.createUser(v);
+        }
+      },
+     });
   }
 
   onEditUser (user: User): void {
     this.matDialog.open(UsersDialogComponent, {
-      data:user,
+      data: user,
     }).afterClosed().subscribe({
       next: (v) => {
         if (!!v) {
-          const arrayNuevo = [...this.users];
-
-          const indiceToEdit = arrayNuevo.findIndex((u) => u.id === user.id);
-          arrayNuevo[indiceToEdit] = {... arrayNuevo[indiceToEdit], ...v};
-          this.users = [...arrayNuevo];
+          this.users$ = this.userService.updateteUser(user.id , v)
         }
       }
     })
   }
 
-  onDeleteUser(userId: number): void {
-    if (confirm('Está seguro de borrar ?')){
-      this.users = this.users.filter((u) => u.id !== userId);
-    }
-  }
+  // onDeleteUser(userId: number): void {
+  //   if (confirm('Está seguro de borrar?? ')){
+  //     this.users$ = this.userService.deleteUser(userId, v)
+  //   }
+  // }
 }

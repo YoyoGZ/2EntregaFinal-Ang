@@ -1,0 +1,9 @@
+.authUser{
+    position: end;
+    background-color: accent;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    font-size: 1.3 rem;
+    font-family: Roboto;
+}

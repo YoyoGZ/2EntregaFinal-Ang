@@ -1,4 +1,5 @@
 <mat-toolbar color="accent">
+  <br />
     <button 
         (click)="toggleSidebar.emit()"
         mat-icon-button 
@@ -7,4 +8,12 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>Aplicación de Entorno Educativo</span>
+
+    <div class="authUser">
+      <p>
+         Usuario Activo 
+        <!-- <br /> -->
+        {{ fullName$ | async}}
+      </p>  
+    </div>
   </mat-toolbar>

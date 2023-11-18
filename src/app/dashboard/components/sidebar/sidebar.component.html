@@ -1,24 +1,30 @@
 
 <mat-nav-list>
-    <mat-list-item>
+
        <a matListItemTitle> Navegacion </a>
-    </mat-list-item>
-    <mat-list-item routerLink="home" [activated]="true">
+   
+    <mat-list-item routerLink="home" routerLinkActive
+         #homeLink="routerLinkActive"  [activated]=homeLink.isActive>
          <a> Home </a>
      </mat-list-item>
-     <mat-list-item routerLink="users">
+     <mat-list-item routerLink="users" routerLinkActive
+     #usersLink="routerLinkActive"  [activated]=usersLink.isActive>
          <a> Usuarios </a>
      </mat-list-item>
-     <mat-list-item routerLink="students">
+     <mat-list-item routerLink="students" routerLinkActive
+     #studentsLink="routerLinkActive"  [activated]=studentsLink.isActive>
          <a> Estudiantes </a>
      </mat-list-item>
-     <mat-list-item routerLink="courses">
+     <mat-list-item routerLink="courses" routerLinkActive
+     #coursesLink="routerLinkActive"  [activated]=coursesLink.isActive>
          <a> Cursos </a>
      </mat-list-item>
-     <mat-list-item routerLink="teachers">
+     <mat-list-item routerLink="teachers" routerLinkActive
+     #teachersLink="routerLinkActive"  [activated]=teachersLink.isActive>
         <a> Profesores </a>
     </mat-list-item>
-     <mat-list-item routerLink="enrrollments" >
+     <mat-list-item routerLink="enrollments" routerLinkActive
+     #enrollmentsLink="routerLinkActive"  [activated]=enrollmentsLink.isActive>
          <a> Inscripciones </a>
      </mat-list-item>
      <mat-list-item (click)="logOut()" >
