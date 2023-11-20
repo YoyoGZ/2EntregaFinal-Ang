@@ -27,9 +27,9 @@ export class UsersService {
     .pipe(concatMap(() => this.getUsers()))
   };
 
-  // deleteUser(userId: number, data: User): Observable<User[]> {
-  //   return this.httpClient
-  //   .delete<User>(`${environment.baseUrl}/users/${userId}`, data)
-  //   .pipe(concatMap(() => this.getUsers()))  
-  // };
+  deleteUser(id: number) : Observable<User[]> {
+    return this.httpClient
+    .delete<Object>(`${environment.baseUrl}/users/${id}`)
+    .pipe(concatMap(() => this.getUsers()))  
+  };
 }

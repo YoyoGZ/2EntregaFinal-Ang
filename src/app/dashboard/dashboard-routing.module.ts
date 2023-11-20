@@ -5,6 +5,7 @@ import { StudentsComponent } from "./pages/students/students.component";
 import { TeachersComponent } from "./pages/teachers/teachers.component";
 import { EnrollmentsComponent } from "./pages/enrollments/enrollments.component";
 import { DashboardComponent } from "./dashboard.component";
+import { adminGuard } from "../core/guards/admin.guard";
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { DashboardComponent } from "./dashboard.component";
             children: [
                     { path: 'home',component: HomeComponent,},
                     
-                    { path: 'users', 
+                    { path: 'users',
+                        canActivate: [adminGuard], 
                         loadChildren: () => import ('./pages/users/users.module')
                         .then((m) => m.UsersModule),},
                     
@@ -25,7 +27,7 @@ import { DashboardComponent } from "./dashboard.component";
                         loadChildren: () => import ('./pages/students/students.module')
                         .then((m) => m.StudentsModule)},
                     
-                    { path: 'teachers',component: TeachersComponent,
+                    { path: 'teachers',component: TeachersComponent,   
                         loadChildren: () => import ('./pages/teachers/teachers.module')
                         .then((m) => m.TeachersModule),},
                     

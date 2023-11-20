@@ -46,9 +46,9 @@ export class UsersComponent {
     })
   }
 
-  // onDeleteUser(userId: number): void {
-  //   if (confirm('Está seguro de borrar?? ')){
-  //     this.users$ = this.userService.deleteUser(userId, v)
-  //   }
-  // }
+  onDeleteUser(userId: number): void {
+    if (confirm('Está seguro de borrar?? ')) {
+      this.users$ = this.userService.deleteUser(userId)
+    }
+  }
 }

@@ -9,7 +9,7 @@
       <th mat-header-cell *matHeaderCellDef>Nombre Completo</th>
       <td mat-cell *matCellDef="let user">
          {{ user | fullname: "uppercase"}} 
-        </td>
+      </td>
     </ng-container>
   
     <ng-container matColumnDef="email">
@@ -20,14 +20,20 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
             <td mat-cell *matCellDef="let user">
-              <button (click)="viewDetail(user.id)" mat-icon-button color="accent">
+              <button 
+              [disabled]= "(userRole$ | async) !== 'Admin'"
+              viewDetail(user.id) mat-icon-button color="accent">
                 <mat-icon>visibility</mat-icon>
               </button>
-                <button (click)="editUser.emit(user)" mat-icon-button color="primary">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button (click)="deleteUser.emit(user.id)" mat-icon-button  color="warn">
-                  <mat-icon>delete</mat-icon>
+              <button
+              [disabled]= "(userRole$ | async) !== 'Admin'"
+              (click)="editUser.emit(user)" mat-icon-button color="primary">
+                  <mat-icon>edit</mat-icon>
+              </button>
+              <button 
+              [disabled]= "(userRole$ | async) !== 'Admin'"
+              (click)="deleteUser.emit(user.id)" mat-icon-button  color="warn">
+                <mat-icon>delete</mat-icon>
               </button>
             </td>
       </ng-container>

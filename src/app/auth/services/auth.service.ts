@@ -5,17 +5,27 @@ import { User } from 'src/app/dashboard/pages/users/models';
 import { environment } from 'src/environment/environment.local';
 import { loginData } from '../models';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../store/auth/auth.actions';
+import { selectAuthState, selectAuthUser } from '../store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _authUser$ = new BehaviorSubject<User | null>(null);
+  public authUser$ = this.store.select(selectAuthUser)
 
-  public authUser$ = this._authUser$.asObservable();
+  constructor(
+    private httpClient : HttpClient, 
+    private router : Router, 
+    private store: Store) {}
 
-  constructor(private httpClient : HttpClient, private router : Router) {}
+    private HandleAuthUser(authUser: User): void {
+      this.store.dispatch(AuthActions.setAuthUser({data: authUser}));
+      localStorage.setItem('token', authUser.token);
+
+    }
 
   login(data: loginData): void  {
     this.httpClient
@@ -26,8 +36,7 @@ export class AuthService {
               alert('Usuario o password invalidos')
             } else {
                 const authUser = response[0];
-                this._authUser$.next(authUser);
-                localStorage.setItem('token', authUser.token);
+                this.HandleAuthUser(authUser),
                 this.router.navigate(['/dashboard/home']);
               } 
       }
@@ -43,8 +52,7 @@ export class AuthService {
             return false;
           } else {
             const authUser = users[0];
-            this._authUser$.next(authUser);
-            localStorage.setItem('token', authUser.token);
+            this.HandleAuthUser(authUser)
             return true;
           }
         })
@@ -52,7 +60,7 @@ export class AuthService {
   };
 
   logOut(): void {
-    this._authUser$.next(null);
+    this.store.dispatch(AuthActions.resetState())
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login'])
   };
