@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, pipe, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from 'src/app/dashboard/pages/users/models';
 import { environment } from 'src/environment/environment.local';
 import { loginData } from '../models';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthActions } from '../store/auth/auth.actions';
-import { selectAuthState, selectAuthUser } from '../store/auth/auth.selectors';
+import { selectAuthUser } from '../store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'

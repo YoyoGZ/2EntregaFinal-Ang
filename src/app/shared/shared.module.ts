@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HeadlineDirective } from './directives/headline.directive';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatTableModule,
     MatInputModule,
     HeadlineDirective,
+    MatSelectModule,
+    MatCheckboxModule,
     MatDatepickerModule,
   ]
 })

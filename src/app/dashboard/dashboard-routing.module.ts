@@ -11,29 +11,31 @@ import { adminGuard } from "../core/guards/admin.guard";
     imports: [
         RouterModule.forChild([
             { path: '', component: DashboardComponent,
-            children: [
-                    { path: 'home',component: HomeComponent,},
-                    
-                    { path: 'users',
-                        canActivate: [adminGuard], 
-                        loadChildren: () => import ('./pages/users/users.module')
-                        .then((m) => m.UsersModule),},
-                    
-                    { path: 'courses',
-                        loadChildren: () => import ('./pages/courses/courses.module')
-                        .then((m) => m.CoursesModule),},
-                    
-                    { path: 'students',component: StudentsComponent,
-                        loadChildren: () => import ('./pages/students/students.module')
-                        .then((m) => m.StudentsModule)},
-                    
-                    { path: 'teachers',component: TeachersComponent,   
-                        loadChildren: () => import ('./pages/teachers/teachers.module')
-                        .then((m) => m.TeachersModule),},
-                    
-                    { path: 'enrollments',component: EnrollmentsComponent,},
-                    
-                    { path: '**',redirectTo: 'home',},
+                children:[
+                        { path: 'home',component: HomeComponent,},
+                        
+                        { path: 'users',
+                            canActivate: [adminGuard], 
+                            loadChildren: () => import ('./pages/users/users.module')
+                            .then((m) => m.UsersModule),},
+                        
+                        { path: 'courses',
+                            loadChildren: () => import ('./pages/courses/courses.module')
+                            .then((m) => m.CoursesModule),},
+                        
+                        { path: 'students',
+                            loadChildren: () => import ('./pages/students/students.module')
+                            .then((m) => m.StudentsModule),},
+                        
+                        { path: 'teachers',  
+                            loadChildren: () => import ('./pages/teachers/teachers.module')
+                            .then((m) => m.TeachersModule),},
+                        
+                        { path: 'enrollments',
+                            loadChildren: () => import ('./pages/enrollments/enrollments.module')
+                            .then((m) => m.EnrollmentsModule),},
+                        
+                        { path: '**',redirectTo: 'home',},
                 ]
             }            
         ]),

@@ -10,25 +10,79 @@
       "id": 1
     },
     {
-      "id": 3,
       "name": "Bob",
       "lastName": "Sinclair",
       "email": "BobSinc@email.com",
       "password": "1234",
-      "role": "Employee",
-      "token": "7811220002gvgbjmk"
+      "role": "Empleado",
+      "token": "7811220002gvgbjmk",
+      "id": 2
     },
     {
-      "id": 4,
       "name": "Armin",
       "lastName": "Van Buren",
       "email": "arminV@email.com",
       "password": "1234",
-      "role": "Admin3",
-      "token": "ytgyhujmjkk33674u3390j3"
+      "role": "Admin",
+      "token": "ytgyhujmjkk33674u3390j3",
+      "id": 3
+    },
+    {
+      "name": "Tester",
+      "lastName": "TErst",
+      "email": "asnians@mail.com",
+      "password": "hausij",
+      "role": "Empleado",
+      "token": "jaiosmaosa8a54cascas8as524",
+      "id": 4
     }
   ],
-  "courses": [],
-  "students": [],
-  "teachers": []
+  "courses": [
+    {
+      "id": 1,
+      "name": "Robotica",
+      "iniDate": "new Date",
+      "finalDate": "new Date"
+    },
+    {
+      "id": 2,
+      "name": "Angular CLI",
+      "iniDate": "new Date",
+      "finalDate": "new Date"
+    },
+    {
+      "id": 3,
+      "name": "Desarrollo Web",
+      "iniDate": "new Date",
+      "finalDate": "new Date"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "Jonas",
+      "lastName": "Viale",
+      "email": "jonviale@mail.com"
+    },
+    {
+      "id": 2,
+      "name": "Changuito",
+      "lastName": "Leuco",
+      "email": "pibeleuco@email.com"
+    },
+    {
+      "id": 3,
+      "name": "Luis",
+      "lastName": "Pedri",
+      "email": "lpedri@email.com"
+    }
+  ],
+  "teachers": [],
+  "enrollments": [
+    {
+      "id": 1,
+      "courseId": 3,
+      "studentId": 3
+    }
+  ]
 }

@@ -6,8 +6,9 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
+
 export class UserDetailComponent {
   constructor( private activatedRoute : ActivatedRoute) {
     this.activatedRoute.snapshot.params['id']
-  }
+  };
 }

@@ -3,6 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 import { EnrollmentActions } from './enrollment.actions';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environment/environment.local';
+import { Enrollment } from '../models';
 
 
 @Injectable()
@@ -14,13 +17,18 @@ export class EnrollmentEffects {
       ofType(EnrollmentActions.loadEnrollments),
       concatMap(() =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
+        this.getEnrollments()
+        .pipe(
           map(data => EnrollmentActions.loadEnrollmentsSuccess({ data })),
+
           catchError(error => of(EnrollmentActions.loadEnrollmentsFailure({ error }))))
       )
     );
   });
 
+  constructor(private actions$: Actions, private httpClient: HttpClient ) {}
 
-  constructor(private actions$: Actions) {}
+  getEnrollments(): Observable<Enrollment[]> {
+    return this.httpClient.get<Enrollment[]>(`${environment.baseUrl}/enrollments?_expand=course&_expand=student`); 
+  }
 }

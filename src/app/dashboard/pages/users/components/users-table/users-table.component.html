@@ -17,21 +17,26 @@
       <td mat-cell *matCellDef="let user"> {{user.email}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Perfil en Sistema </th>
+      <td mat-cell *matCellDef="let user"> {{user.role}} </td>
+    </ng-container>
+
+    <ng-container  matColumnDef="actions">
+        <th  mat-header-cell *matHeaderCellDef> Acciones </th>
             <td mat-cell *matCellDef="let user">
-              <button 
-              [disabled]= "(userRole$ | async) !== 'Admin'"
-              viewDetail(user.id) mat-icon-button color="accent">
+              <button
+               [disabled]="(userRole$ | async) !== 'Admin'"
+               (click)="viewDetail(user.id)" mat-icon-button color="accent">
                 <mat-icon>visibility</mat-icon>
               </button>
               <button
-              [disabled]= "(userRole$ | async) !== 'Admin'"
+              [disabled]="(userRole$ | async) !== 'Admin'"
               (click)="editUser.emit(user)" mat-icon-button color="primary">
                   <mat-icon>edit</mat-icon>
               </button>
               <button 
-              [disabled]= "(userRole$ | async) !== 'Admin'"
+              [disabled]="(userRole$ |async) !== 'Admin'"
               (click)="deleteUser.emit(user.id)" mat-icon-button  color="warn">
                 <mat-icon>delete</mat-icon>
               </button>

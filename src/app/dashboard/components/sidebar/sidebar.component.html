@@ -1,33 +1,40 @@
 
 <mat-nav-list>
-
-       <a matListItemTitle> Navegacion </a>
-   
+    <mat-icon matListItemIcon> arrow_and_edge </mat-icon>
+    <a matListItemTitle> Navegacion </a>
+    
     <mat-list-item routerLink="home" routerLinkActive
-         #homeLink="routerLinkActive"  [activated]=homeLink.isActive>
+        #homeLink="routerLinkActive"  [activated]=homeLink.isActive>
+        <mat-icon matListItemIcon> home </mat-icon>
          <a> Home </a>
      </mat-list-item>
      <mat-list-item routerLink="users" routerLinkActive
-     #usersLink="routerLinkActive"  [activated]=usersLink.isActive>
+        #usersLink="routerLinkActive"  [activated]=usersLink.isActive>
+    <mat-icon matListItemIcon> groups </mat-icon>
          <a> Usuarios </a>
      </mat-list-item>
      <mat-list-item routerLink="students" routerLinkActive
      #studentsLink="routerLinkActive"  [activated]=studentsLink.isActive>
+     <mat-icon matListItemIcon> dataset </mat-icon>
          <a> Estudiantes </a>
      </mat-list-item>
      <mat-list-item routerLink="courses" routerLinkActive
      #coursesLink="routerLinkActive"  [activated]=coursesLink.isActive>
+     <mat-icon matListItemIcon> dns </mat-icon>
          <a> Cursos </a>
      </mat-list-item>
      <mat-list-item routerLink="teachers" routerLinkActive
      #teachersLink="routerLinkActive"  [activated]=teachersLink.isActive>
+     <mat-icon matListItemIcon> layers </mat-icon>
         <a> Profesores </a>
     </mat-list-item>
      <mat-list-item routerLink="enrollments" routerLinkActive
      #enrollmentsLink="routerLinkActive"  [activated]=enrollmentsLink.isActive>
+     <mat-icon matListItemIcon> appsRounded </mat-icon>
          <a> Inscripciones </a>
      </mat-list-item>
      <mat-list-item (click)="logOut()" >
+        <mat-icon matListItemIcon> logout  </mat-icon>
         <a> Finalizar Sesión </a>
     </mat-list-item>
-  </mat-nav-list>
+</mat-nav-list>

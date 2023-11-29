@@ -17,22 +17,17 @@ export class UsersComponent {
   constructor(
     private matDialog: MatDialog,
     private userService: UsersService,
-  ) {
-    this.users$ = this.userService.getUsers();
-  }
-
+  ) {this.users$ = this.userService.getUsers()};
+    
   addUser(): void {
-    this.matDialog
-    .open(UsersDialogComponent)
-    .afterClosed()
-    .subscribe({
-      next: (v) =>{
+    this.matDialog.open(UsersDialogComponent).afterClosed().subscribe({
+      next: (v) => {
         if (!!v) {
           this.users$ = this.userService.createUser(v);
         }
       },
-     });
-  }
+    })
+  };
 
   onEditUser (user: User): void {
     this.matDialog.open(UsersDialogComponent, {
@@ -40,11 +35,11 @@ export class UsersComponent {
     }).afterClosed().subscribe({
       next: (v) => {
         if (!!v) {
-          this.users$ = this.userService.updateteUser(user.id , v)
+          this.users$ = this.userService.updateteUser(user.id, v)
         }
-      }
+      },
     })
-  }
+  };
 
   onDeleteUser(userId: number): void {
     if (confirm('Está seguro de borrar?? ')) {

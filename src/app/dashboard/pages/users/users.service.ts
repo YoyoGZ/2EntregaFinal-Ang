@@ -13,23 +13,20 @@ export class UsersService {
 
   getUsers(): Observable<User[]>  {
     return this.httpClient.get<User[]>(`${environment.baseUrl}/users`);
-  };
+  }
 
   createUser(data: User):  Observable<User[]> {
-    return this.httpClient
-    .post<User>(`${environment.baseUrl}/users`, data)
-    .pipe(concatMap(() => this.getUsers()))
+    return this.httpClient.post<User>(`${environment.baseUrl}/users`, data)
+    .pipe(concatMap(() => this.getUsers()));
   };
 
   updateteUser(userId: number, data: User):  Observable<User[]> {
-    return this.httpClient
-    .put<User>(`${environment.baseUrl}/users/${userId}`, data)
+    return this.httpClient.put<User>(`${environment.baseUrl}/users/${userId}`, data)
     .pipe(concatMap(() => this.getUsers()))
   };
 
   deleteUser(id: number) : Observable<User[]> {
-    return this.httpClient
-    .delete<Object>(`${environment.baseUrl}/users/${id}`)
+    return this.httpClient.delete<Object>(`${environment.baseUrl}/users/${id}`)
     .pipe(concatMap(() => this.getUsers()))  
   };
 }
