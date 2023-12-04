@@ -16,7 +16,7 @@ export class StudentsComponent {
   constructor(
     private studentsService: StudentsService,
     private matDialog: MatDialog,
-    ) {this.students$ = this.studentsService.getStudents$()};
+    ) {this.students$ = this.studentsService.getStudents()};
     
 
   addStudent() : void {
@@ -24,26 +24,32 @@ export class StudentsComponent {
     .open(StudentsDialogComponent)
     .afterClosed()
     .subscribe({
-    next: (v) =>{
-      if (!!v) {
-          this.students$ =  this.studentsService.createStudent$({
-          id: new Date().getTime(),
-          name: v.name,
-          lastName: v.lastName,
-          email: v.email,
-        })
+      next: (v) =>{
+        if (!!v) {
+            this.students$ =  this.studentsService.createStudent({
+            id: new Date().getTime(),
+            name: v.name,
+            lastName: v.lastName,
+            email: v.email,
+          })
+        }
       }
-    }
     });
   };
 
-  OnDeleteStudent(studentId: number): void {
-    this.students$ = this.studentsService.deleteStudent$(studentId)
+  onDeleteStudent(studentId: number): void {
+    if (confirm('Está seguro de Eliminar a este Estudiante ?? ')) {
+      this.students$ = this.studentsService.deleteStudent(studentId)
+    }
   };
 
-  OnEditStudent(studentId: number): void {
+  onEditStudent(student: Student): void {
     this.matDialog.open(StudentsDialogComponent, {
-      data:studentId,
+      data: student,})
+      .afterClosed().subscribe({
+        next: (result) => {if(!!result)
+          {this.students$ = this.studentsService.editStudent(student.id, result)}
+      }
     });
   }
 }

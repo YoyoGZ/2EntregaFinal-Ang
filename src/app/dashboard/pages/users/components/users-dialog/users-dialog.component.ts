@@ -28,7 +28,6 @@ export class UsersDialogComponent {
       role: ['', Validators.required],
       token: ['', Validators.required]
     })
-   
     if (this.user) {
       this.userForm.patchValue(this.user);
     }
@@ -37,7 +36,7 @@ export class UsersDialogComponent {
   onSubmit(): void {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
-    } else{
+    } else {
       this.matDialogRef.close(this.userForm.value);
     }
   };

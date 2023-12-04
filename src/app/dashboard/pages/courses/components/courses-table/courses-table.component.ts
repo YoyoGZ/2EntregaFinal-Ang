@@ -18,10 +18,9 @@ export class CoursesTableComponent {
   deleteCourse = new EventEmitter<number>();
   
   @Output()
-  editCourse = new EventEmitter<Course>()
+  editCourse = new EventEmitter()
   
   displayedColumns = ['id', 'name', 'iniDate','finalDate','actions'];
-
   constructor(private router: Router) {}
 
   viewDetail(courseId : number): void {

@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CoursesDialogComponent } from '../../../courses/components/courses-dialog/courses-dialog.component';
 import { StudentsService } from '../../students.service';
 
 @Component({
@@ -22,13 +21,13 @@ export class StudentsDialogComponent {
   });
   
   constructor(
-    private matDialogRef: MatDialogRef<CoursesDialogComponent>,
+    private matDialogRef: MatDialogRef<StudentsDialogComponent>,
     private studentsService: StudentsService,
 
     @Inject(MAT_DIALOG_DATA) 
     private studentId?: number
-    ) {if (studentId) {
-      this.studentsService.getStudentById$(studentId).subscribe({
+  ) { if (studentId) {
+      this.studentsService.getStudentById(studentId).subscribe({
         next: (s) => {
           if (s) {
             this.studentForm.patchValue(s);
@@ -48,5 +47,5 @@ export class StudentsDialogComponent {
     } else{
       this.matDialogRef.close(this.studentForm.value);
     }
-  }
+  };
 }

@@ -5,6 +5,7 @@ import { TeachersTableComponent } from './components/teachers-table/teachers-tab
 import { TeachersDetailComponent } from './components/teachers-detail/teachers-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TeachersDialogComponent } from './components/teachers-dialog/teachers-dialog.component';
+import { TeacherRoutingModule } from './teachers-routing.module';
 
 
 
@@ -18,6 +19,7 @@ import { TeachersDialogComponent } from './components/teachers-dialog/teachers-d
   imports: [
     CommonModule,
     SharedModule,
+    TeacherRoutingModule
   ]
 })
 export class TeachersModule { }

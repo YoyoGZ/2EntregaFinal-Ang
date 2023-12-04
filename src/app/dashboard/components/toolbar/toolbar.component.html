@@ -1,5 +1,4 @@
-<mat-toolbar color="accent">
-  <br />
+<mat-toolbar class="flex justify-content-between" color="accent">
     <button 
         (click)="toggleSidebar.emit()"
         mat-icon-button 
@@ -9,11 +8,9 @@
     </button>
     <span>Aplicación de Entorno Educativo</span>
 
-    <div class="authUser">
+    <div>
       <p>
-         Usuario Activo 
-        <!-- <br /> -->
-        {{ fullName$ | async}}
+         Usuario Activo:  {{ fullName$ | async}}
       </p>  
     </div>
   </mat-toolbar>

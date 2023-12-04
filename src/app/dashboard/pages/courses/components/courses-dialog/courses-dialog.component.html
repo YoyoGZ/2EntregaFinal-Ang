@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-    {{ isEditing ? "Editando curso / carrera" : "Agregar nuevo curso / carrera" }}
+    {{ isEditing ? "Editando curso " : "Agregar nuevo curso / carrera" }}
 </h1>
 
 <div mat-dialog-content>
@@ -29,10 +29,10 @@
             <div class="col-6">
                 <mat-form-field class="w-100">
                     <mat-label> Fecha de Finalizacion </mat-label>
-                    <input [formControl]="finalDateControl" matInput [matDatepicker]= "finalDatePicker" > 
-                        <mat-hint > MM/DD/AAAA </mat-hint >
-                            <mat-datepicker-toggle matIconSuffix [for]="finalDatePicker"></mat-datepicker-toggle> 
-                        <mat-datepicker #finalDatePicker> </mat-datepicker > 
+                        <input [formControl]="finalDateControl" matInput [matDatepicker]= "finalDatePicker" > 
+                            <mat-hint > MM/DD/AAAA </mat-hint >
+                                <mat-datepicker-toggle matIconSuffix [for]="finalDatePicker"></mat-datepicker-toggle> 
+                                    <mat-datepicker #finalDatePicker> </mat-datepicker> 
                 </mat-form-field> 
                     <mat-error>
                         {{ courseForm.get("finalDate")?.errors | formErrors }}                       

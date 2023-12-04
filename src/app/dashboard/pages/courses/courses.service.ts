@@ -1,56 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Course } from './models';
-import { Observable, of } from 'rxjs';
+import { Observable, concatMap, of } from 'rxjs';
+import { environment } from 'src/environment/environment.local';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
-  courses: Course[] = [
-      {
-        id: 1,
-        name:'Robotica',
-        iniDate: new Date,
-        finalDate: new Date,
-      },
-      {
-        id: 2,
-        name: 'Angular CLI',
-        iniDate: new Date,
-        finalDate: new Date
-      },
-      {
-        id: 3,
-        name: 'Desarrollo Web',
-        iniDate: new Date,
-        finalDate: new Date
-      }
-    ];
+  courses: Course[] = [];
 
-  getCourses$(): Observable<Course[]> {
-    return of(this.courses);
+  constructor(private httpClient: HttpClient) {}
+
+  getCourses(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(`${environment.baseUrl}/courses`);
   }
-  createCourse$(payload: Course): Observable<Course[]> {
-    this.courses.push(payload);
-    return of([...this.courses])
+  createCourse$(data: Course): Observable<Course[]> {
+    return this.httpClient.post<Course>(`${environment.baseUrl}/courses`, data)
+    .pipe(concatMap(() => this.getCourses()));
   };
 
-  editCourses$(id: number, payload: Course): Observable<Course[]> {
-    return of(
-      this.courses.map((c)  => (c.id === id ? {...c , ...payload} : c))
-    )
+  editCourses(courseId: number, data: Course): Observable<Course[]> {
+    return this.httpClient.put<Course>(`${environment.baseUrl}/courses/${courseId}`, data)
+    .pipe(concatMap(() => this.getCourses()))
   };
 
-  deleteCourse$(id: number): Observable<Course[]> {
-   this.courses = this.courses.filter((c) => c.id === id);
-   return of(this.courses);
+  deleteCourse(id: number): Observable<Course[]> {
+    return this.httpClient.delete<Object>(`${environment.baseUrl}/courses/${id}`)
+    .pipe(concatMap(() => this.getCourses()))  
   };
 
-  getCourseById$(id: number): Observable<Course | undefined> {
+  getCourseById(id: number): Observable<Course | undefined> {
     return of(this.courses.find((c) => c.id === id))
   };
-
 }
 
 

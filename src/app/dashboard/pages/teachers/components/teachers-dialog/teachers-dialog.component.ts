@@ -29,7 +29,7 @@ export class TeachersDialogComponent {
 
     @Inject(MAT_DIALOG_DATA) private teacherId?: number
     ) {if (teacherId) {
-      this.teachersService.getTeacherById$(teacherId).subscribe({
+      this.teachersService.getTeacherById(teacherId).subscribe({
         next: (t) => {
           if (t) {this.teacherForm.patchValue(t);}
           }

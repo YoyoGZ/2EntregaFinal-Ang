@@ -1,56 +1,37 @@
 import { Injectable } from "@angular/core";
 import { Student } from "./models";
-import { Observable, of } from "rxjs";
+import { Observable, concatMap, of } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environment/environment.local";
 
 
 @Injectable({
     providedIn: 'root'
   })
   export class StudentsService {
+    constructor ( private httpClient : HttpClient) {}
+    students: Student[] = [];
   
-    students: Student[] = [
-        {
-          id: 1,
-          name:'Jonas',
-          lastName: "Viale",
-          email: "jonviale@mail.com",
-        },
-        {
-          id: 2,
-          name:'Changuito',
-          lastName: "Leuco",
-          email: "pibeleucoe@mail.com",
-        },
-        {
-          id: 3,
-          name:'Luis',
-          lastName: "Pedri",
-          email: "lpedri@mail.com",
-        }
-      ];
-  
-    getStudents$(): Observable<Student[]> {
-      return of(this.students);
+    getStudents(): Observable<Student[]> {
+      return this.httpClient.get<Student[]>(`${environment.baseUrl}/students`);
     }
-    createStudent$(payload: Student): Observable<Student[]> {
-      this.students.push(payload);
-      return of([...this.students])
+    createStudent(data: Student): Observable<Student[]> {
+      return this.httpClient.post<Student>(`${environment.baseUrl}/students`, data)
+    .pipe(concatMap(() => this.getStudents()));
     };
   
-    editStudent$(id: number, payload: Student): Observable<Student[]> {
-      // this.students.push(payload);
-      return of(
-        this.students.map((e)  => (e.id === id ? {...e , ...payload} : e))
-      )
+    editStudent(studentId: number, data: Student): Observable<Student[]> {
+      return this.httpClient.put<Student>(`${environment.baseUrl}/students/${studentId}`, data)
+      .pipe(concatMap(() => this.getStudents()))
     };
   
-    deleteStudent$(id: number): Observable<Student[]> {
-     this.students = this.students.filter((c) => c.id === id);
-     return of(this.students);
+    deleteStudent(id: number): Observable<Student[]> {
+      return this.httpClient.delete<Object>(`${environment.baseUrl}/students/${id}`)
+      .pipe(concatMap(() => this.getStudents()))  
     };
   
-    getStudentById$(id: number): Observable<Student | undefined> {
-      return of(this.students.find((c) => c.id === id))
+    getStudentById(id: number): Observable<Student | undefined> {
+      return of(this.students.find((s) => s.id === id))
     };
   
   }

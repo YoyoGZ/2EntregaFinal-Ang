@@ -1,12 +1,13 @@
 <h1 appHeadline> Listado de Cursos</h1>
-<div class="d-flex mb-3">
-<button (click)="addCourse()" mat-flat-button color="primary">
-    <mat-icon>add</mat-icon>
-    Generar nuevo Curso
-</button>
-</div>
+    <div class="d-flex mb-3">
+        <button (click)="addCourse()" mat-flat-button color="primary">
+            <mat-icon>add</mat-icon>
+            Generar nuevo Curso
+        </button>
+    </div>
 
-<app-courses-table [dataSource]="(courses$ | async) || []">
- (editCourse)="onEditCourse($event)"
- (deleteCourse)="onDeleteCourse($event)"
+<app-courses-table 
+    [dataSource]="(courses$ | async) || []"
+    (editCourse)="onEditCourse($event)"
+    (deleteCourse)="onDeleteCourse($event)">
 </app-courses-table>

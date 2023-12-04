@@ -42,7 +42,7 @@ export class UsersComponent {
   };
 
   onDeleteUser(userId: number): void {
-    if (confirm('Está seguro de borrar?? ')) {
+    if (confirm('Está seguro de excluir a este Usuario??')) {
       this.users$ = this.userService.deleteUser(userId)
     }
   }

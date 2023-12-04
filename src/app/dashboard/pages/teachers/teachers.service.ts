@@ -1,56 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Teacher } from './models';
-import { Observable, of } from 'rxjs';
+import { Observable, concatMap, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environment/environment.local';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeachersService {
 
-  teachers: Teacher[] = [
-      {
-        id: 1,
-        name:'Lionel',
-        lastName: 'Messi',
-        curso:'Javascript',
-        email: 'lmessi@email.com'
-      },
-      {
-        id: 2,
-        name: 'Cristiano',
-        lastName: 'Ronaldo',
-        curso: 'Ux/Ui',
-        email: 'cristiano@email.com'
-      },
-      {
-        id: 3,
-        name: 'Jodeph',
-        lastName: 'Guardiola',
-        curso: 'Angular CLI',
-        email: 'pepguar@email.com'
-      }
-    ];
+  teachers: Teacher[] = [];
 
-  getTeachers$(): Observable<Teacher[]> {
-      return of(this.teachers);
-    }
-  createTeacher$(payload: Teacher): Observable<Teacher[]> {
-    this.teachers.push(payload);
-    return of([...this.teachers])
-    };
+  constructor(private httpClient: HttpClient) {}
 
-  deleteTeacher$(id: number): Observable<Teacher[]> {
-    this.teachers = this.teachers.filter((t) => t.id === id);
-    return of(this.teachers);
-    };
+  getTeachers(): Observable<Teacher[]> {
+    return this.httpClient.get<Teacher[]>(`${environment.baseUrl}/teachers`);
+  }
+  createTeacher(data: Teacher): Observable<Teacher[]> {
+    return this.httpClient.post<Teacher>(`${environment.baseUrl}/teachers`, data)
+    .pipe(concatMap(() => this.getTeachers()));
+  };
 
-  editTeacher$(id: number, payload: Teacher): Observable<Teacher[]> {
-    return of(
-      this.teachers.map((t)  => (t.id === id ? {...t , ...payload} : t))
-    )
-    };
+  deleteTeacher(id: number): Observable<Teacher[]> {
+    return this.httpClient.delete<Object>(`${environment.baseUrl}/teachers/${id}`)
+    .pipe(concatMap(() => this.getTeachers()))  
+  };
 
-  getTeacherById$(id: number): Observable<Teacher | undefined> {
+  editTeacher(teacherId: number, data: Teacher): Observable<Teacher[]> {
+    return this.httpClient.put<Teacher>(`${environment.baseUrl}/users/${teacherId}`, data)
+    .pipe(concatMap(() => this.getTeachers()))
+  };
+
+  getTeacherById(id: number): Observable<Teacher | undefined> {
     return of(this.teachers.find((t) => t.id === id))
     };
 }

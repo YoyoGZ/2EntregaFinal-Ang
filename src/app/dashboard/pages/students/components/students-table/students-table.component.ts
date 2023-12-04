@@ -19,7 +19,7 @@ export class StudentsTableComponent {
   deleteStudent = new EventEmitter<number>();
   
   @Output()
-  editStudent = new EventEmitter<Student>()
+  editStudent = new EventEmitter()
   
   displayedColumns = ['id', 'name','email', 'actions'];
 

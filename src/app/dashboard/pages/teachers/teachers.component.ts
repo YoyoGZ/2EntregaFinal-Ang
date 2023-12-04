@@ -17,32 +17,33 @@ export class TeachersComponent {
   constructor(
     private teachersService: TeachersService,
     private matDialog: MatDialog,
-    ) {this.teachers$ = this.teachersService.getTeachers$();}
+    ) {this.teachers$ = this.teachersService.getTeachers();}
 
   addTeacher() : void {
     this.matDialog
     .open(TeachersDialogComponent)
     .afterClosed()
     .subscribe({
-    next: (v) =>{
-      if (!!v) {
-          this.teachers$ =  this.teachersService.createTeacher$({
-          id: new Date().getTime(),
-          name: v.name,
-          lastName: v.lastName,
-          curso: v.curso,
-          email: v.email,
-        })
+      next: (v) =>{
+        if (!!v) {
+          this.teachers$ =  this.teachersService.createTeacher({
+            id: new Date().getTime(),
+            name: v.name,
+            lastName: v.lastName,
+            role: v.role,
+            course: v.course,
+            email: v.email,
+          })
+        }
       }
-    }
     });
   }
 
-  OnDeleteTeacher(teacherId : number): void {
-    this.teachers$ = this.teachersService.deleteTeacher$(teacherId)
+  onDeleteTeacher(teacherId : number): void {
+    this.teachers$ = this.teachersService.deleteTeacher(teacherId)
   }
 
-  OnEditTeacher(teacherId: number): void {
+  onEditTeacher(teacherId: number): void {
     this.matDialog.open(TeachersDialogComponent, {
       data:teacherId,
     });

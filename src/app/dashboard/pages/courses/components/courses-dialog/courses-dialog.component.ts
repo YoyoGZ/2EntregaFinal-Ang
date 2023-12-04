@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoursesService } from '../../courses.service';
 
@@ -15,33 +15,33 @@ export class CoursesDialogComponent {
   finalDateControl = new FormControl();
 
   courseForm = new FormGroup ({
-    name:  this.nameControl,
+    name: this.nameControl,
     iniDate: this.iniDateControl,
-    finalDate:  this.finalDateControl, 
+    finalDate: this.finalDateControl, 
   });
   
   constructor(
     private matDialogRef: MatDialogRef<CoursesDialogComponent>,
     private coursesService: CoursesService,
-
-    @Inject(MAT_DIALOG_DATA) 
-    private courseId?: number
-    ) {if (courseId) {
-      this.coursesService.getCourseById$(courseId).subscribe({
-        next: (c) => {
-          if (c) {
-            this.courseForm.patchValue(c);
+    
+    @Inject(MAT_DIALOG_DATA)private courseId?: number
+  ) { if (courseId) {
+        this.coursesService.getCourseById(courseId).subscribe({
+          next: (c) => {
+            if (c) {
+              this.courseForm.patchValue(c);
+              }
             }
           }
-        });
+        )
       }
-     };
+    };
 
   public get isEditing(): boolean {
     return !!this.courseId;
   };
 
-  onSubmit():  void {
+  onSubmit(): void {
     if (this.courseForm.invalid) {
       this.courseForm.markAllAsTouched();
     } else{

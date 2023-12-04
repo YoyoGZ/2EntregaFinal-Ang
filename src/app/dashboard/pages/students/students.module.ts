@@ -6,6 +6,7 @@ import { StudentsTableComponent } from './components/students-table/students-tab
 import { StudentsDetailComponent } from './components/students-detail/students-detail/students-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { StudentsRoutingModule } from './students-routing.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    StudentsRoutingModule
   ]
 })
 export class StudentsModule { }

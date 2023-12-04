@@ -25,7 +25,7 @@ export class UsersTableComponent {
   
   displayedColumns = ['id', 'fullname', 'email','role','actions'];
   
-  userRole$ : Observable<'Admin' | 'Employee' | undefined>
+  userRole$ : Observable<'Admin' | 'Employee' | 'Student' | undefined>
 
 
   constructor(private router: Router, private store :Store) {
