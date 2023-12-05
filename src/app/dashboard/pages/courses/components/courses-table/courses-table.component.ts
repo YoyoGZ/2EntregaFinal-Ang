@@ -20,7 +20,7 @@ export class CoursesTableComponent {
   @Output()
   editCourse = new EventEmitter()
   
-  displayedColumns = ['id', 'name', 'iniDate','finalDate','actions'];
+  displayedColumns = ['id', 'name', 'iniDate','finalDate','student','actions'];
   constructor(private router: Router) {}
 
   viewDetail(courseId : number): void {

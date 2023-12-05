@@ -1,14 +1,14 @@
 <h1 mat-dialog-title>
-    {{ isEditing ? "Editando Profesor" : "Agregar nuevo Profesor" }}
+    {{ teacher ? "Editando Profesor" : "Agregar nuevo Profesor" }}
 </h1>
 
 <div mat-dialog-content>
     <form>
         <div class="row">
-            <div class="col-20">
+            <div class="col-6">
                 <mat-form-field class="w-100">
                     <mat-label> Nombre </mat-label>
-                        <input [formControl]="nameControl" matInput/>
+                        <input formControlname ="name" matInput/>
                         <mat-error>
                             {{ teacherForm.get("name")?.errors | formErrors }}                       
                         </mat-error>
@@ -17,7 +17,7 @@
             <div class="col-6">
                 <mat-form-field class="w-100">
                     <mat-label> Apellido </mat-label>
-                        <input [formControl]="lastNameControl" matInput/>
+                        <input formControlname="lastName" matInput/>
                         <mat-error>
                             {{ teacherForm.get("lastName")?.errors | formErrors }}                       
                         </mat-error>                       
@@ -25,8 +25,8 @@
             </div>
             <div class="col-6">
                 <mat-form-field class="w-100">
-                    <mat-label> Curso / Carrera </mat-label>
-                        <input [formControl]="courseControl" matInput/>
+                    <mat-label> Curso </mat-label>
+                        <input formControlname ="course" matInput/>
                         <mat-error>
                             {{ teacherForm.get("course")?.errors | formErrors }}                       
                         </mat-error>                       
@@ -35,7 +35,7 @@
             <div class="col-6">
                 <mat-form-field class="w-100">
                     <mat-label> Email </mat-label>
-                        <input [formControl]="emailControl" matInput/>
+                        <input formControlname="email" matInput/>
                         <mat-error>
                             {{ teacherForm.get("email")?.errors | formErrors }}                       
                         </mat-error>                       

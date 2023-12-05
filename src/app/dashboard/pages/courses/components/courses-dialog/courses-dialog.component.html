@@ -1,11 +1,11 @@
 <h1 mat-dialog-title>
-    {{ isEditing ? "Editando curso " : "Agregar nuevo curso / carrera" }}
+    {{ isEditing ? "Editando curso " : "Agregar nuevo curso" }}
 </h1>
 
 <div mat-dialog-content>
     <form>
         <div class="row">
-            <div class="col-20">
+            <div class="col-10">
                 <mat-form-field class="w-100">
                     <mat-label> Nombre </mat-label>
                         <input [formControl]="nameControl" matInput/>
@@ -13,24 +13,35 @@
                         {{ courseForm.get("name")?.errors | formErrors }}                       
                     </mat-error>
                 </mat-form-field>
-            </div>       
-            <div class="col-6">
+            </div>
+            
+            <div class="col-10">
+                <mat-form-field class="w-100">
+                    <mat-label> Alumno </mat-label>
+                        <input [formControl]="studentControl" matInput/>
+                    <mat-error>
+                        {{ courseForm.get("student")?.errors | formErrors }}                       
+                    </mat-error>
+                </mat-form-field>
+            </div> 
+
+            <div class="col-3">
                 <mat-form-field class="w-100">
                     <mat-label> Fecha de Inicio </mat-label>
                         <input [formControl]="iniDateControl" matInput [matDatepicker]= "iniDatePicker">
                             <mat-datepicker-toggle matIconSuffix [for]="iniDatePicker"></mat-datepicker-toggle> 
-                                <mat-hint> MM/DD/AAAA </mat-hint> 
+                                <mat-hint> DD/MM/AAAA </mat-hint> 
                                     <mat-datepicker #iniDatePicker> </mat-datepicker> 
                 </mat-form-field> 
                 <mat-error>
                     {{ courseForm.get("iniDate")?.errors | formErrors }}
                 </mat-error>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <mat-form-field class="w-100">
                     <mat-label> Fecha de Finalizacion </mat-label>
                         <input [formControl]="finalDateControl" matInput [matDatepicker]= "finalDatePicker" > 
-                            <mat-hint > MM/DD/AAAA </mat-hint >
+                            <mat-hint > DD/MM/AAAA </mat-hint >
                                 <mat-datepicker-toggle matIconSuffix [for]="finalDatePicker"></mat-datepicker-toggle> 
                                     <mat-datepicker #finalDatePicker> </mat-datepicker> 
                 </mat-form-field> 

@@ -25,11 +25,12 @@ export class CoursesComponent {
      .subscribe({
       next: (v) =>{
         if (!!v) {
-            this.courses$ =  this.coursesService.createCourse$({
-              id: new Date().getTime(),
+            this.courses$ =  this.coursesService.createCourse({
+              id: v.id,
               name: v.name,
               iniDate: v.iniDate,
               finalDate: v.finalDate,
+              student: v.student,
             })
         }
       }

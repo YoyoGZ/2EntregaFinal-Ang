@@ -21,7 +21,7 @@ export class StudentsTableComponent {
   @Output()
   editStudent = new EventEmitter()
   
-  displayedColumns = ['id', 'name','email', 'actions'];
+  displayedColumns = ['id', 'name','course','email', 'actions'];
 
   constructor(private router: Router) {}
 

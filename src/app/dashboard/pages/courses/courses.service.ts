@@ -16,7 +16,7 @@ export class CoursesService {
   getCourses(): Observable<Course[]> {
     return this.httpClient.get<Course[]>(`${environment.baseUrl}/courses`);
   }
-  createCourse$(data: Course): Observable<Course[]> {
+  createCourse(data: Course): Observable<Course[]> {
     return this.httpClient.post<Course>(`${environment.baseUrl}/courses`, data)
     .pipe(concatMap(() => this.getCourses()));
   };

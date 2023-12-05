@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { TeachersService } from '../../teachers.service';
+import { Teacher } from '../../models';
 
 
 @Component({
@@ -11,41 +11,30 @@ import { TeachersService } from '../../teachers.service';
 })
 export class TeachersDialogComponent {
 
-  nameControl = new FormControl();
-  lastNameControl = new FormControl();
-  courseControl = new FormControl();
-  emailControl = new FormControl();
-
-  teacherForm = new FormGroup ({
-    name: this.nameControl,
-    lastName: this.lastNameControl,
-    course: this.courseControl,
-    email: this.emailControl 
-  });
-  
+  teacherForm: FormGroup;
   constructor(
+    private  fb: FormBuilder,
     private matDialogRef: MatDialogRef<TeachersDialogComponent>,
-    private teachersService:  TeachersService,
+    
+    @Inject(MAT_DIALOG_DATA) public teacher? : Teacher,
 
-    @Inject(MAT_DIALOG_DATA) private teacherId?: number
-    ) {if (teacherId) {
-      this.teachersService.getTeacherById(teacherId).subscribe({
-        next: (t) => {
-          if (t) {this.teacherForm.patchValue(t);}
-          }
-        });
-      }
-     };
+  ) {
+      this.teacherForm = this.fb.group({
+        name: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.email, Validators.required]],
+        course: ['', Validators.required],
+      })
+        if (this.teacher) {
+          this.teacherForm.patchValue(this.teacher);
+        } 
+    };  
 
-  public get isEditing(): boolean {
-    return !!this.teacherId;
-  };
-
-  onSubmit():  void {
+  onSubmit(): void {
     if (this.teacherForm.invalid) {
       this.teacherForm.markAllAsTouched();
-    } else{
+    } else {
       this.matDialogRef.close(this.teacherForm.value);
     }
-  }
+  };
 }

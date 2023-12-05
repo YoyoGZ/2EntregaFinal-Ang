@@ -21,15 +21,14 @@ export class StudentsComponent {
 
   addStudent() : void {
     this.matDialog
-    .open(StudentsDialogComponent)
-    .afterClosed()
-    .subscribe({
+    .open(StudentsDialogComponent).afterClosed().subscribe({
       next: (v) =>{
         if (!!v) {
             this.students$ =  this.studentsService.createStudent({
-            id: new Date().getTime(),
+            id: v.id,
             name: v.name,
             lastName: v.lastName,
+            course: v.course,
             email: v.email,
           })
         }

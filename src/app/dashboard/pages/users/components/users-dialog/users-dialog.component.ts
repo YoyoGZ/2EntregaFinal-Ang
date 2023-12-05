@@ -14,10 +14,12 @@ export interface Role {
 })
 
 export class UsersDialogComponent {
+  
   userForm: FormGroup;
     constructor(
       private  fb: FormBuilder,
       private matDialogRef: MatDialogRef<UsersDialogComponent>,
+      
       @Inject(MAT_DIALOG_DATA) public user? : User,
       ) {
     this.userForm = this.fb.group({

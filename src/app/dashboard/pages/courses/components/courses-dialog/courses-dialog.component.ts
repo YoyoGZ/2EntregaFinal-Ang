@@ -13,11 +13,13 @@ export class CoursesDialogComponent {
   nameControl = new FormControl();
   iniDateControl = new FormControl();
   finalDateControl = new FormControl();
+  studentControl = new FormControl()
 
   courseForm = new FormGroup ({
     name: this.nameControl,
     iniDate: this.iniDateControl,
-    finalDate: this.finalDateControl, 
+    finalDate: this.finalDateControl,
+    student: this.studentControl 
   });
   
   constructor(

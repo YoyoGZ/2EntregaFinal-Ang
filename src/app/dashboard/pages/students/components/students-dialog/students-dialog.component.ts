@@ -12,11 +12,13 @@ import { StudentsService } from '../../students.service';
 export class StudentsDialogComponent {
   nameControl = new FormControl();
   lastNameControl = new FormControl();
+  courseControl = new FormControl();
   emailControl = new FormControl();
 
   studentForm = new FormGroup({
     name: this.nameControl,
     lastName: this.lastNameControl,
+    course: this.courseControl,
     email: this.emailControl, 
   });
   

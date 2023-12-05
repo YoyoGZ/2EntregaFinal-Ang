@@ -30,8 +30,4 @@ export class TeachersService {
     return this.httpClient.put<Teacher>(`${environment.baseUrl}/users/${teacherId}`, data)
     .pipe(concatMap(() => this.getTeachers()))
   };
-
-  getTeacherById(id: number): Observable<Teacher | undefined> {
-    return of(this.teachers.find((t) => t.id === id))
-    };
 }
