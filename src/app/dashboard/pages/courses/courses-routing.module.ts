@@ -8,8 +8,7 @@ import { CourseDetailComponent } from './components/course-detail/course-detail.
     imports: [
         RouterModule.forChild([
             { path: '', component: CoursesComponent},
-
-            { path: 'courses/:id', component: CourseDetailComponent},
+            { path: 'detail/:id', component: CourseDetailComponent},
         ])
     ],
     exports: [RouterModule],

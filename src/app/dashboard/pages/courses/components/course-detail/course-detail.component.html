@@ -1,1 +1,20 @@
-<p>course-detail works!</p>
+<button class="mb-5"  routerLink="/dashboard/pages/courses" mat-icon-button>
+    <mat-icon> arrow_back</mat-icon> Regresar
+</button>
+<br>
+
+<div class="card align-items-center" style="width: 18rem; height: 20rem;">
+    <div class="card-body">
+      <h5 class="card-title"> {{course?.name}}</h5>
+      <p class="card-text"> {{description}} </p>
+      <br>
+      <p class="card-text"> {{course?.student}} </p>
+    </div>
+    <div class="card-body" [ngClass]="{
+        'Curso de Angular CLI' : description === 'Angular',
+        'Curso de Diseño UX / UI': description === 'Diseno',
+        'Curso de Lenguaje Javascript': description === 'Javascript'
+    }">
+    </div>
+  </div>
+

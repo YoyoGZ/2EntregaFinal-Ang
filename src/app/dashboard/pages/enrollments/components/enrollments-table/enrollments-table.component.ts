@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Enrollment } from '../../models';
-import {  Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { selectEnrollments, selectEnrollmentsIsLoading } from '../../store/enrollment.selectors';
 
 @Component({
